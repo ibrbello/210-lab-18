@@ -29,9 +29,33 @@ int main() {
     string anotherEntry;
     // enter do-while loop
     do {
-    // if statement based on above, 
-        if (methodChoice == 1) { // adding to head
+        // get user input
+        cout << "Enter review rating 0-5: ";
+        double tmpRating;
+        cin >> tmpRating;
+        cin.ignore(); 
 
+        cout << "Enter review comments: ";
+        string tmpComments;
+        getline(cin, tmpComments);
+
+        Node *head = nullptr;
+        if (methodChoice == 1) { // adding to head
+            Node *newNode = new Node; // create ptr that points to dynamically allocated space
+        
+        // adds node at head
+        if (!head) { // If head is pointing to nullptr (i.e. empty list)
+            head = newNode; // head now points to what newNode points to (dyn allocated space)
+            newNode->next = nullptr; // make the dyn-allocated space's next ptr point to nullptr (housekeeping?)
+            newNode->rating = tmpRating; // make the '' 's value be the random int
+            newNode->
+        }
+        else { // If head is not pointing to nullptr
+            newNode->next = head; // make the dyn-allocated space's next ptr point what head is 
+            // pointing to, i.e. the first node. This makes newNode the first node in the list
+            newNode->value = tmp_val; // same as above
+            head = newNode; // head now points to the same thing that newNode points to (dyn space)
+            // which is the new first node
         } 
 
         else { // adding to tail

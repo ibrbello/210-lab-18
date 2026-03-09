@@ -32,9 +32,11 @@ int main() {
     // enter do-while loop
     do {
         // get user input
-        cout << "Enter review rating 0-5: ";
         double tmpRating;
-        cin >> tmpRating;
+        do { // input validation
+            cout << "Enter review rating 0-5: ";
+            cin >> tmpRating;
+        } while (tmpRating < 0 || tmpRating > 5);
         cin.ignore(); 
 
         cout << "Enter review comments: ";
@@ -71,36 +73,46 @@ int main() {
             else {
                 // if not: traverse list to the end, and make the pointer of the last node 
                 // point to the new node
-                while (current) { // Traverse list
+                current = head;
+                while (current->next) { // Traverse list
                     current = current->next;
                 }
                 current->next = newNode;
                 newNode->rating = tmpRating; 
                 newNode->comments = tmpComments;
+                newNode->next = nullptr;
             }
         }
         cout << "Do you want to enter another review? y/n: " << endl;
         cin >> anotherEntry;
+        cin.ignore();
     } while (anotherEntry != "n");
    
     // Output
-    int avgRating;
-    int total;
-    int count = 1;
+    double avgRating = 0;
+    double total = 0;
+    int count = 0;
     cout << endl;
     cout << "Outputting reviews..." << endl;
     // traverse list
     current = head;
     while (current) { 
+        count++;
         cout << "Review #" << count << ": " << "Rating: " << current->rating << ": " 
             << current->comments << endl;
-        total += current -> rating;
+        total += current->rating;
         current = current->next;
-        count++;
     }
     // compute average
     avgRating = total / count;
     // print average
     cout << "Average rating: " << avgRating << endl;
+
+     // Cleanup to prevent memory leak
+     while (head) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
     return 0;
 }

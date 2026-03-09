@@ -40,26 +40,42 @@ int main() {
         getline(cin, tmpComments);
 
         Node *head = nullptr;
+        Node *newNode = new Node; // create ptr that points to dynamically allocated space
         if (methodChoice == 1) { // adding to head
-            Node *newNode = new Node; // create ptr that points to dynamically allocated space
         
-        // adds node at head
-        if (!head) { // If head is pointing to nullptr (i.e. empty list)
-            head = newNode; // head now points to what newNode points to (dyn allocated space)
-            newNode->next = nullptr; // make the dyn-allocated space's next ptr point to nullptr (housekeeping?)
-            newNode->rating = tmpRating; // make the '' 's value be the random int
-            newNode->
+            // adds node at head
+            if (!head) { // If list is empty
+                head = newNode; 
+                newNode->next = nullptr; 
+                newNode->rating = tmpRating; 
+                newNode->comments = tmpComments;
+            }
+            else { // If list is not empty
+                newNode->next = head; 
+                newNode->rating = tmpRating; 
+                newNode->comments = tmpComments;
+                head = newNode; // head now points to the same thing that newNode points to (dyn space)
+                // which is the new first node
+            } 
         }
-        else { // If head is not pointing to nullptr
-            newNode->next = head; // make the dyn-allocated space's next ptr point what head is 
-            // pointing to, i.e. the first node. This makes newNode the first node in the list
-            newNode->value = tmp_val; // same as above
-            head = newNode; // head now points to the same thing that newNode points to (dyn space)
-            // which is the new first node
-        } 
 
         else { // adding to tail
+            // if list is empty, same as above
+            if (!head) { // If list is empty
+                head = newNode; 
+                newNode->next = nullptr; 
+                newNode->rating = tmpRating; 
+                newNode->comments = tmpComments;
+            }
+            else {
+                // if not: traverse list to the end, and make the pointer of the last node point to the new node
+                Node *current = head;
+                while (current) { // Traverse list
+                    current = current->next;
+                }
+                
 
+            }
         }
         cout << "Do you want to enter another review? y/n: " << endl;
         cin >> anotherEntry;

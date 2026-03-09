@@ -26,7 +26,7 @@ int main() {
     cout << "   [2]: New nodes are added at the tail of the linked list" << endl;
     int methodChoice;
     cin >> methodChoice;
-    cout << "The choice was " << methodChoice;
+    cout << "The choice was " << methodChoice << endl;
 
     string anotherEntry;
     // enter do-while loop
@@ -92,20 +92,15 @@ int main() {
     // traverse list
     current = head;
     while (current) { 
-        cout << "Review #" << count++ << ": " << current->rating << ": " << current->comments << endl;
-        total += 
+        cout << "Review #" << count << ": " << "Rating: " << current->rating << ": " 
+            << current->comments << endl;
+        total += current -> rating;
         current = current->next;
-
+        count++;
     }
-
-
-
-
-
-    // output total
-
     // compute average
-
+    avgRating = total / count;
     // print average
+    cout << "Average rating: " << avgRating << endl;
     return 0;
 }

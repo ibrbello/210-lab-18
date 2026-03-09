@@ -18,6 +18,8 @@ struct Node {
 
 // Step 2: Main function
 int main() {
+    Node *head = nullptr;
+    Node *current = head;
     // Ask whether the user wants to add node to head or tail
     cout << "Which linked list method should we use?" << endl;
     cout << "   [1]: New nodes are added at the head of the linked list" << endl;
@@ -39,7 +41,6 @@ int main() {
         string tmpComments;
         getline(cin, tmpComments);
 
-        Node *head = nullptr;
         Node *newNode = new Node; // create ptr that points to dynamically allocated space
         if (methodChoice == 1) { // adding to head
         
@@ -68,20 +69,38 @@ int main() {
                 newNode->comments = tmpComments;
             }
             else {
-                // if not: traverse list to the end, and make the pointer of the last node point to the new node
-                Node *current = head;
+                // if not: traverse list to the end, and make the pointer of the last node 
+                // point to the new node
                 while (current) { // Traverse list
                     current = current->next;
                 }
-                
-
+                current->next = newNode;
+                newNode->rating = tmpRating; 
+                newNode->comments = tmpComments;
             }
         }
         cout << "Do you want to enter another review? y/n: " << endl;
         cin >> anotherEntry;
     } while (anotherEntry != "n");
    
- // traverse list
+    // Output
+    int avgRating;
+    int total;
+    int count = 1;
+    cout << endl;
+    cout << "Outputting reviews..." << endl;
+    // traverse list
+    current = head;
+    while (current) { 
+        cout << "Review #" << count++ << ": " << current->rating << ": " << current->comments << endl;
+        total += 
+        current = current->next;
+
+    }
+
+
+
+
 
     // output total
 
